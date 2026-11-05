@@ -5,16 +5,11 @@ using Translators.Tests.Fixtures;
 
 namespace Translators.Tests.ApiTests.Authentication.GoogleLogin;
 
-public class GoogleLoginHttpTests
-    : IClassFixture<TranslatorsWebApplicationFactory>
+public class GoogleLoginHttpTests:BaseApiTest
 {
-    private readonly HttpClient _client;
-
     public GoogleLoginHttpTests(
         TranslatorsWebApplicationFactory factory)
-    {
-        _client = factory.CreateClient();
-    }
+    :base(factory){}
 
     [Fact]
     public async Task GoogleLogin_WithInvalidToken_ReturnsUnauthorized()
@@ -24,9 +19,9 @@ public class GoogleLoginHttpTests
         {
             IdToken = "invalid-google-token"
         };
-
+        
         // Act
-        var response = await _client.PostAsJsonAsync(
+        var response = await Client.PostAsJsonAsync(
             "/api/users/google-login",
             request);
 
