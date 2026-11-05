@@ -11,7 +11,7 @@ using Translators.EntityFrameworkCore.DbContexts;
 
 namespace Translators.Host;
 
-public partial class Program
+public partial class Program        
 {
     public static void Main(string[] args)
     {
